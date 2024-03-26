@@ -31,19 +31,25 @@
   :prefix "flymake-margin-")
 
 (defcustom flymake-margin-error-symbol "E"
-  "Symbol to represent terminal errors in Flymake."
+  "Symbol to represent margin errors in Flymake."
   :type 'string
   :group 'flymake-margin)
 
 (defcustom flymake-margin-warning-symbol "W"
-  "Symbol to represent terminal warnings in Flymake."
+  "Symbol to represent margin warnings in Flymake."
   :type 'string
   :group 'flymake-margin)
 
 (defcustom flymake-margin-note-symbol "N"
-  "Symbol to represent terminal notes in Flymake."
+  "Symbol to represent margin notes in Flymake."
   :type 'string
   :group 'flymake-margin)
+
+(defvar flymake-margin-mode-hook nil
+  "Hook run when `flymake-margin-mode' is enabled.")
+
+(defvar flymake-margin-mode-off-hook nil
+  "Hook run when `flymake-margin-mode' is disabled.")
 
 (defcustom flymake-margin-side 'left
   "Side of the buffer to display Flymake margin symbols.
@@ -119,10 +125,12 @@ extensions modifying the margin in order to copy the contents."
   (if flymake-margin-mode
       (progn
         (flymake-margin-setup-symbols)
-        (advice-add #'flymake--fringe-overlay-spec :override #'flymake-margin-fringe-overlay-spec-advice))
+        (advice-add #'flymake--fringe-overlay-spec :override #'flymake-margin-fringe-overlay-spec-advice)
+        (run-hooks 'flymake-margin-mode-hook))
     (progn
       ;; TODO: Unload symbols loaded by `flymake-margin-setup-symbols`
-      (advice-remove #'flymake--fringe-overlay-spec #'flymake-margin-fringe-overlay-spec-advice))))
+      (advice-remove #'flymake--fringe-overlay-spec #'flymake-margin-fringe-overlay-spec-advice)
+      (run-hooks 'flymake-margin-mode-off-hook))))
 
 (provide 'flymake-margin)
 
