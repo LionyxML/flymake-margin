@@ -19,6 +19,10 @@ a git insertion) and making flymake marks usable on Emacs TUI.
 
 You can use any string you like, UTF-8 symbols, emojis and others.
 
+NOTE: By the time you see this package you may not like (or want) to use it
+since there's a patch to provide this functionality current being discussed,
+like discussed [here](https://github.com/emacs-dashboard/emacs-dashboard/pull/457#issuecomment-2021651907).
+
 
 ## Motivation
 
