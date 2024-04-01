@@ -53,7 +53,7 @@
 
 (defcustom flymake-margin-side 'left
   "Side of the buffer to display Flymake margin symbols.
-Possible values are 'left' and 'right'."
+Possible values are `left' and `right'."
   :type '(choice (const :tag "Left" left) (const :tag "Right" right))
   :group 'flymake-margin
   :set (lambda (symbol value)
@@ -66,7 +66,9 @@ Possible values are 'left' and 'right'."
            (modify-all-frames-parameters '((left-fringe . right-margin))))))
 
 (defun flymake-margin-fringe-overlay-spec-advice (bitmap &optional recursed)
-"Advice function to customize Flymake fringe overlay when passing BITMAP and RECURSED."
+  "Advice function to customize Flymake fringe overlay.
+When passing BITMAP and RECURSED, this function handles
+customizing the fringe overlay."
 (if (and (symbolp bitmap)
 		 (boundp bitmap)
 		 (not recursed))
