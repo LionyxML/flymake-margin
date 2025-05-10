@@ -14,7 +14,7 @@ or
 
 ![flymake-margin-mode](imgs/demo03.png)
 
-Freeing the fringe for other modes, `hl-diff` here (the green block marking
+Freeing the fringe for other modes, `diff-hl` here (the green block marking
 a git insertion) and making flymake marks usable on Emacs TUI. 
 
 You can use any string you like, UTF-8 symbols, emojis and others.
